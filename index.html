@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clements High School - Free CBE Prep Platform</title>
+    <style>
+        :root {
+            /* Clements HS Colors: Blue, Black, and Gold accents */
+            --primary: #0A2540;
+            --secondary: #639FAB;
+            --accent: #D4AF37;
+            --bg-light: #F4F6F9;
+            --text-dark: #2D3142;
+            --white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; background-color: var(--bg-light); color: var(--text-dark); min-height: 100vh; }
+
+        /* Sidebar Navigation */
+        aside { width: 300px; background-color: var(--primary); color: var(--white); padding: 20px; display: flex; flex-direction: column; overflow-y: auto; box-shadow: 4px 0 10px rgba(0,0,0,0.1); }
+        aside h2 { font-size: 1.4rem; margin-bottom: 5px; color: var(--accent); }
+        aside p { font-size: 0.85rem; opacity: 0.8; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .category-title { font-weight: bold; font-size: 0.9rem; text-transform: uppercase; color: var(--secondary); margin: 15px 0 5px 0; letter-spacing: 1px; }
+        .course-list { list-style: none; }
+        .course-list li { padding: 10px 12px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.95rem; }
+        .course-list li:hover, .course-list li.active { background-color: var(--secondary); color: var(--primary); font-weight: bold; }
+
+        /* Main Workspace Content */
+        main { flex: 1; padding: 40px; overflow-y: auto; }
+        .header-banner { background: var(--white); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 6px solid var(--accent); }
+        .header-banner h1 { color: var(--primary); margin-bottom: 8px; }
+        .privacy-badge { display: inline-block; background-color: #E2E8F0; color: #4A5568; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 10px; }
+
+        /* Syllabus Timeline Blocks */
+        .syllabus-section { background: var(--white); padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .syllabus-section h3 { margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid var(--bg-light); padding-bottom: 8px; }
+        .timeline-step { display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .step-num { background: var(--primary); color: var(--white); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; font-size: 0.85rem; margin-right: 15px; flex-shrink: 0; }
+        .step-content h4 { margin-bottom: 3px; font-size: 1rem; }
+        .step-content p { font-size: 0.9rem; color: #718096; }
+
+        /* Client-side Quiz Container */
+        .quiz-container { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .quiz-question { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; }
+        .options-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .option-btn { background: var(--bg-light); border: 2px solid #E2E8F0; padding: 12px 20px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+        .option-btn:hover { border-color: var(--secondary); background: #EFF6FF; }
+        .option-btn.selected { border-color: var(--primary); background: #DBEAFE; font-weight: bold; }
+        
+        .action-btns { display: flex; gap: 15px; }
+        button.submit-btn { background: var(--primary); color: var(--white); border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        button.submit-btn:hover { background: #133B62; }
+        
+        .result-box { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .result-box.correct { background-color: #DEF7EC; color: #03543F; border-left: 5px solid #31C48D; }
+        .result-box.incorrect { background-color: #FDE8E8; color: #9B1C1C; border-left: 5px solid #F05252; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR DIRECTORY: Complete Course Offerings Matrix -->
+    <aside>
+        <h2>Clements High School</h2>
+        <p>Texas CBE Self-Study Portal</p>
+        
+        <div class="category-title">Mathematics</div>
+        <ul class="course-list">
+            <li class="active" onclick="switchCourse('Algebra 1')">Algebra 1</li>
+            <li onclick="switchCourse('Geometry')">Geometry</li>
+            <li onclick="switchCourse('Algebra 2')">Algebra 2</li>
+            <li onclick="switchCourse('Pre-Calculus')">Pre-Calculus</li>
+        </ul>
+
+        <div class="category-title">Sciences</div>
+        <ul class="course-list">
+            <li onclick="switchCourse('Biology')">Biology</li>
+            <li onclick="switchCourse('Chemistry')">Chemistry</li>
+            <li onclick="switchCourse('Physics')">Physics</li>
+        </ul>
+
+        <div class="category-title">Social Studies</div>
+        <ul class="course-list">
+            <li onclick="switchCourse('World Geography')">World Geography</li>
+            <li onclick="switchCourse('World History')">World History</li>
+            <li onclick="switchCourse('US History')">US History</li>
+        </ul>
+    </aside>
+
+    <!-- MAIN DYNAMIC CONTENT CONTAINER -->
+    <main>
+        <section class="header-banner">
+            <h1 id="course-title">Algebra 1</h1>
+            <p>Complete accelerated mastery program aligned with Texas UTHS blueprint guidelines.</p>
+            <div class="privacy-badge">🔒 Zero Data Collection: Your progress & scores are completely private to you.</div>
+        </section>
+
+        <!-- Dynamic Syllabus Mapping Out Full Year Material -->
+        <section class="syllabus-section">
+            <h3>📅 Full-Year Curriculum Outline</h3>
+            <div id="syllabus-timeline">
+                <div class="timeline-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Linear Equations and Inequalities (Semester 1)</h4>
+                        <p>Solving multi-step equations, absolute value concepts, and functional relationships.</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Quadratic and Exponential Functions (Semester 2)</h4>
+                        <p>Factoring polynomials, vertex forms, quadratic formulas, and real-world growth curves.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Localized Serverless Exam Module -->
+        <section class="quiz-container">
+            <h3>✏️ Interactive Practice Engine</h3>
+            <br>
+            <div class="quiz-question" id="quiz-question-text">Simplify the expression: 3x + 5 = 20. Solve for x.</div>
+            <div class="options-group" id="quiz-options-container">
+                <button class="option-btn" onclick="selectOption(this, 0)">x = 3</button>
+                <button class="option-btn" onclick="selectOption(this, 1)">x = 5</button>
+                <button class="option-btn" onclick="selectOption(this, 2)">x = 15</button>
+            </div>
+            <div class="action-btns">
+                <button class="submit-btn" onclick="checkAnswer()">Submit Solution</button>
+            </div>
+            <div id="result" class="result-box"></div>
+        </section>
+    </main>
+
+    <!-- JAVASCRIPT FRAMEWORK: Manages data routing entirely inside client browser -->
+    <script>
+        // Central data ledger holding outlines for every course track
+        const courseData = {
+            'Algebra 1': {
+                subtitle: "Complete accelerated mastery program aligned with Texas UTHS blueprint guidelines.",
+                steps: [
+                    { title: "Linear Equations & Graphs (Sem 1)", desc: "Slope-intercept form, domain & range limitations, and transformations." },
+                    { title: "Systems of Equations & Quadratics (Sem 2)", desc: "Substitution matrices, factoring trinomials, and graphing parabolas." }
+                ],
+                question: "Solve for x: 4x - 7 = 13",
+                options: ["x = 5", "x = 4", "x = 2"],
+                correctIndex: 0
+            },
+            'Geometry': {
+                subtitle: "High school geometry track emphasizing coordinate geometry and axiomatic proofs.",
+                steps: [
+                    { title: "Congruence and Similarity (Sem 1)", desc: "Triangle proofs (SSS, SAS), parallel line structures, and logic arguments." },
+                    { title: "Trigonometry & Spatial Measurements (Sem 2)", desc: "SohCahToa ratios, circle theorems, volume calculations for prisms and cones." }
+                ],
+                question: "What is the sum of the interior angles of a regular hexagon?",
+                options: ["180°", "540°", "720°"],
+                correctIndex: 2
+            },
+            'Chemistry': {
+                subtitle: "Foundational chemical interactions, atomic configurations, and stoichiometry parameters.",
+                steps: [
+                    { title: "Atomic Structure & Periodic Trends (Sem 1)", desc: "Electron configuration paths, chemical bonding structures, and naming nomenclature." },
+                    { title: "Stoichiometry & Thermodynamics (Sem 2)", desc: "Balancing equations, mole-mass vector ratios, gas behaviors, and enthalpy charts." }
+                ],
