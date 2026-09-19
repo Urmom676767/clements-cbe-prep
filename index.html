@@ -20,21 +20,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { display: flex; background-color: var(--bg-light); color: var(--text-dark); min-height: 100vh; overflow: hidden; }
 
-        /* Main Structural Split */
         #app-container { display: flex; width: 100%; height: 100vh; position: relative; }
         
-        /* Left Core Sidebar Navigation */
         aside { width: 320px; background: var(--primary); color: var(--white); display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.1); }
         .sidebar-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .sidebar-header h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 5px; }
         .sidebar-header p { font-size: 0.8rem; opacity: 0.7; }
         
-        /* Progress Tracker Segment */
         .progress-sidebar-widget { padding: 15px 20px; background: rgba(255,255,255,0.05); font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .progress-bar-container { background: rgba(255,255,255,0.2); height: 8px; border-radius: 4px; margin-top: 5px; overflow: hidden; }
-        .progress-bar-fill { background: var(--accent); width: 35%; height: 100%; transition: width 0.3s; }
+        .progress-bar-fill { background: var(--accent); width: 25%; height: 100%; transition: width 0.3s; }
 
-        /* Semester & 9-Week Sub-navigation */
         .navigation-scroller { flex: 1; overflow-y: auto; padding: 15px; }
         .nav-section-title { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; margin: 15px 0 5px 5px; font-weight: bold; }
         .nav-btn { display: flex; align-items: center; width: 100%; padding: 10px 12px; background: none; border: none; color: #E2E8F0; text-align: left; cursor: pointer; border-radius: 6px; font-size: 0.9rem; margin-bottom: 3px; }
@@ -43,74 +39,91 @@
         .nav-sub-list li { padding: 6px 12px; font-size: 0.82rem; color: #94A3B8; cursor: pointer; border-left: 2px solid rgba(255,255,255,0.1); }
         .nav-sub-list li:hover, .nav-sub-list li.active { color: var(--accent); border-left-color: var(--accent); font-weight: bold; }
 
-        /* Central Layout Workspace */
         #main-workspace { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        /* Master Catalog Search Bar Dashboard Banner */
         .top-dashboard-nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
         .search-wrapper { position: relative; flex: 1; max-width: 500px; }
         .search-input { width: 100%; padding: 10px 15px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; }
-        .search-input:focus { border-color: var(--secondary); }
-        .hub-btn { background: var(--secondary); color: var(--white); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; transition: background 0.2s; }
-        .hub-btn:hover { background: #172554; }
+        .hub-btn { background: var(--secondary); color: var(--white); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; }
 
-        /* Academic Catalog Main Container View */
-        .content-display-area { flex: 1; overflow-y: auto; padding: 30px; position: relative; }
+        .content-display-area { flex: 1; overflow-y: auto; padding: 30px; }
         .catalog-container { display: block; }
         .catalog-container.hidden { display: none; }
         
-        /* Academic Tab Grid Layouts */
-        .catalog-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 25px; gap: 10px; }
-        .tab-trigger { padding: 10px 20px; background: none; border: none; font-size: 0.95rem; font-weight: 600; color: #64748B; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .catalog-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 25px; gap: 5px; flex-wrap: wrap; }
+        .tab-trigger { padding: 10px 15px; background: none; border: none; font-size: 0.9rem; font-weight: 600; color: #64748B; cursor: pointer; border-bottom: 3px solid transparent; }
         .tab-trigger.active { color: var(--secondary); border-bottom-color: var(--secondary); }
         
         .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .course-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+        .course-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
         .course-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-        .course-card h4 { font-size: 1.1rem; color: var(--primary); margin-bottom: 5px; }
+        .course-card h4 { font-size: 1.05rem; color: var(--primary); margin-bottom: 5px; }
+        
         .course-badge { display: inline-block; font-size: 0.72rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; background: #E2E8F0; color: #475569; margin-bottom: 12px; }
         .course-badge.ap { background: #FEE2E2; color: #991B1B; }
         .course-badge.aac { background: #FEF3C7; color: #92400E; }
+        
         .course-meta { font-size: 0.8rem; color: #64748B; margin-top: 15px; border-top: 1px solid var(--border); padding-top: 10px; display: flex; justify-content: space-between; }
 
-        /* Course Specific Dashboard View Structure */
         .course-view-container { display: none; }
         .course-view-container.active { display: block; }
-        .back-to-catalog { background: none; border: none; color: var(--secondary); font-weight: bold; cursor: pointer; margin-bottom: 15px; display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem; }
+        .back-to-catalog { background: none; border: none; color: var(--secondary); font-weight: bold; cursor: pointer; margin-bottom: 15px; font-size: 0.9rem; }
         
-        /* Lesson Sub-Tabs Framework */
-        .lesson-tabs-header { display: flex; background: #E2E8F0; padding: 5px; border-radius: 8px; gap: 5px; margin-bottom: 25px; max-width: 450px; }
-        .lesson-tab-btn { flex: 1; padding: 8px; border: none; background: none; border-radius: 6px; font-weight: 600; font-size: 0.88rem; color: #475569; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .lesson-tabs-header { display: flex; background: #E2E8F0; padding: 5px; border-radius: 8px; gap: 5px; margin-bottom: 25px; max-width: 550px; }
+        .lesson-tab-btn { flex: 1; padding: 8px; border: none; background: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; color: #475569; cursor: pointer; }
         .lesson-tab-btn.active { background: var(--white); color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         
-        .lesson-panel { display: none; background: var(--white); border-radius: 12px; padding: 30px; border: 1px solid var(--border); min-height: 300px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .lesson-panel { display: none; background: var(--white); border-radius: 12px; padding: 30px; border: 1px solid var(--border); min-height: 300px; }
         .lesson-panel.active { display: block; }
-        
-        /* Textbook Content Typography Styles */
-        .textbook-content h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; }
-        .textbook-content p { font-size: 1rem; line-height: 1.6; color: #334155; margin-bottom: 15px; }
         .teks-callout { background: #EFF6FF; border-left: 4px solid var(--secondary); padding: 15px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 0.9rem; }
 
-        /* Interactive Quiz Layout Components */
-        .quiz-question-block { font-weight: 600; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary); }
         .quiz-options-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-        .quiz-option-row { background: var(--bg-light); border: 2px solid var(--border); border-radius: 8px; padding: 14px 20px; text-align: left; cursor: pointer; transition: all 0.2s; font-size: 0.98rem; }
-        .quiz-option-row:hover { border-color: var(--secondary); background: #F1F5F9; }
+        .quiz-option-row { background: var(--bg-light); border: 2px solid var(--border); border-radius: 8px; padding: 14px 20px; text-align: left; cursor: pointer; font-size: 0.95rem; width: 100%; }
         .quiz-option-row.selected { border-color: var(--secondary); background: #EFF6FF; font-weight: bold; }
         .explanation-card { background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 20px; margin-top: 20px; display: none; }
-        .explanation-card h5 { color: #166534; font-size: 1rem; margin-bottom: 5px; }
-        .explanation-card p { color: #1E3A8A; font-size: 0.92rem; line-height: 1.5; }
 
-        /* Timed Exam Simulation Hub Modal Overlay */
         #exam-hub-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); z-index: 100; align-items: center; justify-content: center; }
-        .exam-hub-modal { background: var(--white); width: 90%; max-width: 800px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; flex-direction: column; max-height: 85vh; overflow: hidden; }
+        .exam-hub-modal { background: var(--white); width: 90%; max-width: 800px; border-radius: 16px; display: flex; flex-direction: column; max-height: 85vh; overflow: hidden; }
         .exam-hub-header { background: var(--primary); color: var(--white); padding: 25px; display: flex; justify-content: space-between; align-items: center; }
-        .exam-timer-banner { background: var(--danger); padding: 6px 15px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; letter-spacing: 0.5px; }
         .exam-hub-body { padding: 30px; overflow-y: auto; flex: 1; }
         
-        /* Tutor Sidebar Interactive Panel Chat */
-        #tutor-sidebar { width: 340px; background: var(--white); border-left: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: -4px 0 15px rgba(0,0,0,0.02); }
+        #tutor-sidebar { width: 340px; background: var(--white); border-left: 1px solid var(--border); display: flex; flex-direction: column; }
         .tutor-header { padding: 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); display: flex; align-items: center; gap: 12px; }
         .tutor-avatar { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary); }
         .tutor-chat-history { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; background: #F8FAFC; }
-        .chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; }
+        .chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; }
+        .chat-bubble.bot { background: var(--white); border: 1px solid var(--border); align-self: flex-start; }
+        .chat-bubble.user { background: var(--secondary); color: var(--white); align-self: flex-end; }
+        .tutor-input-dock { padding: 15px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        .tutor-text-box { flex: 1; padding: 10px 15px; border: 1px solid var(--border); border-radius: 8px; outline: none; }
+        .tutor-send-btn { background: var(--primary); color: var(--white); border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        <aside>
+            <div class="sidebar-header">
+                <h2>Clements Mastery</h2>
+                <p>FBISD CBE & AP Prep Portal</p>
+            </div>
+
+            <div class="progress-sidebar-widget">
+                <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                    <span>Syllabus Tracker</span>
+                    <span id="tracker-pct-label">25%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="tracker-bar-fill" style="width: 25%;"></div>
+                </div>
+            </div>
+
+            <div class="navigation-scroller">
+                <div class="nav-section-title">Academic Schedule</div>
+                <button class="nav-btn active" onclick="switchSemester('sem1', this)">📅 Semester 1 (A)</button>
+                <ul class="nav-sub-list">
+                    <li class="active" onclick="switchGradingPeriod(1, this)">1st Nine-Weeks Track</li>
+                    <li onclick="switchGradingPeriod(2, this)">2nd Nine-Weeks Track</li>
+                </ul>
+
+                <button class="nav-btn" onclick="switchSemester('sem2', this)">📅 Semester 2 (B)</button>
